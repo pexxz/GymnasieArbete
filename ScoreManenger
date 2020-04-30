@@ -1,0 +1,18 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using TMPro;
+public class ScoreManenger : MonoBehaviour
+{
+    public TextMeshProUGUI scoreText;
+    public static int myScore;
+
+    void Start()
+    {
+        myScore = 0;
+    }
+    void Update()
+    {
+        scoreText.text = myScore.ToString();
+    }
+}
