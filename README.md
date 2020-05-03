@@ -1,2 +1,2 @@
 GymnasieArbete_2D.
-SCRIPTS för spelprojekt, C#
+Kod för spelprojekt, C#
