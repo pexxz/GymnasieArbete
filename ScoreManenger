@@ -14,5 +14,6 @@ public class ScoreManenger : MonoBehaviour
     void Update()
     {
         scoreText.text = myScore.ToString();
+        
     }
 }
