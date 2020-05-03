@@ -53,7 +53,6 @@ public class CharaterController : MonoBehaviour
             AudioManenger.Instance.PlaySFX(AudioManenger.Instance.playerJumpSfx);
             rb.velocity = Vector2.up * jumpForce;
         }
-
         //Död
         if (myHealth == 0)
         {
