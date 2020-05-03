@@ -20,5 +20,6 @@ public class Diamond : MonoBehaviour
         AudioManenger.Instance.PlaySFX(AudioManenger.Instance.collectDiamondSfx);
         ScoreManenger.myScore = ScoreManenger.myScore + scoreValue;
         Destroy(gameObject);
+        
     }
 }
