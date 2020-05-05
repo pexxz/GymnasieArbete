@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class CharaterController : MonoBehaviour
@@ -19,6 +17,7 @@ public class CharaterController : MonoBehaviour
     public int extraJumpValue;
 
     private Rigidbody2D rb;
+
     //Jump
     private bool isGrounded;
     public Transform groundCheck;
@@ -36,12 +35,12 @@ public class CharaterController : MonoBehaviour
 
     private void Update()
     {
-        //Jump
+        #region Jump
+        //Jump functions
         if (isGrounded == true)
         {
             extraJump = extraJumpValue;
         }
-
         if (Input.GetKeyDown(KeyCode.Space) && extraJump > 0)
         {
             AudioManenger.Instance.PlaySFX(AudioManenger.Instance.playerJumpSfx);
@@ -53,7 +52,8 @@ public class CharaterController : MonoBehaviour
             AudioManenger.Instance.PlaySFX(AudioManenger.Instance.playerJumpSfx);
             rb.velocity = Vector2.up * jumpForce;
         }
-        //Död
+        #endregion
+        //IF player dies, Load MainMenu screen
         if (myHealth == 0)
         {
             SceneManager.LoadScene("MainMenu");
@@ -65,11 +65,11 @@ public class CharaterController : MonoBehaviour
         //Jump
         isGrounded = Physics2D.OverlapCircle(groundCheck.position,checkRadius, whatIsGround);
 
-        //Rörelse
+        //Movement
         moveInput = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
 
-        //Flip character
+        //Flips character depending on what way character is facing
         if (facingRight == false && moveInput > 0)
         {
             flip();
@@ -80,7 +80,7 @@ public class CharaterController : MonoBehaviour
         }
     }
 
-    //Flips Character
+    //Flips Character function
     void flip()
     {
         facingRight = !facingRight;
@@ -88,20 +88,20 @@ public class CharaterController : MonoBehaviour
         Scaler.x *= -1;
         transform.localScale = Scaler;
     }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
+        //Spike function, on collision = play audio, take damage
         if (other.gameObject.CompareTag("Spikes"))
         {
             AudioManenger.Instance.PlaySFX(AudioManenger.Instance.spikeTrapSfx);
             myHealth = myHealth - 1;
         }
-
+        //If player collides with Kill  trigger (fall out of map) = take damage
         if (other.gameObject.CompareTag("KillTrigger"))
         {
             myHealth = myHealth - 1;
         }
-
+        //IF player collids with FinishPoint = play audio, load Main menu
         if (other.gameObject.CompareTag("Finish"))
         {
             AudioManenger.Instance.PlaySFX(AudioManenger.Instance.FinishSfx);
