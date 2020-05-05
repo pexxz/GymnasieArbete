@@ -1,24 +1,15 @@
 using UnityEngine;
 
-public class CameraFollow : MonoBehaviour
+public class Respawn : MonoBehaviour
 {
-    private Vector2 velocity;
-    public float smoothTimeY;
-    public float smoothTimeX;
+    [SerializeField]private Transform player;
+    [SerializeField] private Transform respawnPoint;
 
-    public GameObject player;
-    void Start()
+
+    //If the player collides with Respawn trigger, teleports player to respawnPoint
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Find player Gameobject
-        player = GameObject.FindGameObjectWithTag("Player");
+        player.transform.position = respawnPoint.transform.position;
     }
 
-    //Smooths the camera movement on x & y axis
-    void FixedUpdate()
-    {
-        float posX = Mathf.SmoothDamp(transform.position.x, player.transform.position.x, ref velocity.x, smoothTimeX);
-        float posY = Mathf.SmoothDamp(transform.position.y, player.transform.position.y, ref velocity.y, smoothTimeY);
-
-        transform.position = new Vector3(posX, posY, transform.position.z);
-    }
 }
