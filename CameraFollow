@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-//Attatch Script to Character Camera / main camera
 public class CameraFollow : MonoBehaviour
 {
     private Vector2 velocity;
@@ -12,9 +9,11 @@ public class CameraFollow : MonoBehaviour
     public GameObject player;
     void Start()
     {
+        //Find player Gameobject
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
+    //Smooths the camera movement on x & y axis
     void FixedUpdate()
     {
         float posX = Mathf.SmoothDamp(transform.position.x, player.transform.position.x, ref velocity.x, smoothTimeX);
