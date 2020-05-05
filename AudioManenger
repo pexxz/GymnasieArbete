@@ -28,7 +28,7 @@ public class AudioManenger : MonoBehaviour
         }
     }
     #endregion
-
+    //Libaray for audio in project
     #region Audio Library
     public AudioClip playerJumpSfx;
     public AudioClip spikeTrapSfx;
@@ -62,7 +62,7 @@ public class AudioManenger : MonoBehaviour
         musicSource01.loop = true;
         musicSource02.loop = true;
     }
-
+    //
     public void PlayMusic(AudioClip musicClip)
     {
         AudioSource activeSource = (firstMusicSourceIsPlaying) ? musicSource01 : musicSource02;
