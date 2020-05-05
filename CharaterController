@@ -69,7 +69,7 @@ public class CharaterController : MonoBehaviour
         moveInput = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
 
-        //Flips character depending on what way character is facing
+        //Flips character depending on moveInput value
         if (facingRight == false && moveInput > 0)
         {
             flip();
@@ -90,18 +90,18 @@ public class CharaterController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        //Spike function, on collision = play audio, take damage
+        //If player collide with Spike = play audio, take damage
         if (other.gameObject.CompareTag("Spikes"))
         {
             AudioManenger.Instance.PlaySFX(AudioManenger.Instance.spikeTrapSfx);
             myHealth = myHealth - 1;
         }
-        //If player collides with Kill  trigger (fall out of map) = take damage
+        //If player collide with Kill trigger (fall out of map) = take damage
         if (other.gameObject.CompareTag("KillTrigger"))
         {
             myHealth = myHealth - 1;
         }
-        //IF player collids with FinishPoint = play audio, load Main menu
+        //If player collide with Finish trigger = play audio, load Main menu
         if (other.gameObject.CompareTag("Finish"))
         {
             AudioManenger.Instance.PlaySFX(AudioManenger.Instance.FinishSfx);
