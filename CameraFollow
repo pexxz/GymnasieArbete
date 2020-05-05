@@ -7,13 +7,13 @@ public class CameraFollow : MonoBehaviour
     public float smoothTimeX;
 
     public GameObject player;
+    
     void Start()
     {
-        //Find player Gameobject
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    //Smooths the camera movement on x & y axis
+    //Smooths the camera movement
     void FixedUpdate()
     {
         float posX = Mathf.SmoothDamp(transform.position.x, player.transform.position.x, ref velocity.x, smoothTimeX);
