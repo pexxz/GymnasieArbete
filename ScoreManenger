@@ -1,16 +1,19 @@
 using UnityEngine;
+using TMPro;
 
-public class Diamond : MonoBehaviour
+public class ScoreManenger : MonoBehaviour
 {
-    //Set scoreValue to how much point you want the diamond to give
-    public int scoreValue;
+    public TextMeshProUGUI scoreText;
+    public static int myScore;
 
-
-    //plays audio, adds score, and the destroy diamond object.
-    void OnTriggerEnter2D(Collider2D collision)
+    void Start()
     {
-        AudioManenger.Instance.PlaySFX(AudioManenger.Instance.collectDiamondSfx);
-        ScoreManenger.myScore = ScoreManenger.myScore + scoreValue;
-        Destroy(gameObject);
+        //Set myScore var to 0 at start
+        myScore = 0;
+    }
+    void Update()
+    {
+        //Used to display current score (myScore variable)
+        scoreText.text = myScore.ToString();
     }
 }
