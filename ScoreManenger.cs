@@ -13,7 +13,7 @@ public class ScoreManenger : MonoBehaviour
     }
     void Update()
     {
-        //Used to display current score (myScore variable)
+        //Uppdates Score displayed on Screen
         scoreText.text = myScore.ToString();
     }
 }
